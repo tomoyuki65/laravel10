@@ -11,8 +11,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Sanctumのマイグレーションを無効化
-        Sanctum::ignoreMigrations();
+        //
     }
 
     /**
