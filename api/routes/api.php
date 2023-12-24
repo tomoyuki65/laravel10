@@ -20,10 +20,15 @@ use App\Http\Controllers\Api\UserController;
 //     return $request->user();
 // });
 
+Route::middleware('auth:api')->group(function () {
+    Route::prefix('v1')->group(function() {
+        Route::get('/user/{uid}', [UserController::class, 'user']);
+        Route::put('/user/{uid}', [UserController::class, 'update']);
+        Route::delete('/user/{uid}', [UserController::class, 'delete']);
+    });
+});
+
 Route::prefix('v1')->group(function() {
     Route::post('/user', [UserController::class, 'create']);
     Route::get('/users', [UserController::class, 'users']);
-    Route::get('/user/{uid}', [UserController::class, 'user']);
-    Route::put('/user/{uid}', [UserController::class, 'update']);
-    Route::delete('/user/{uid}', [UserController::class, 'delete']);
 });

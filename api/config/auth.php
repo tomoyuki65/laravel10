@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // Firebase用の設定を追加
+        'api' => [
+            'driver' => 'firebase',
+        ],
     ],
 
     /*
