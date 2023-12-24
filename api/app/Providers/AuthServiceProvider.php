@@ -11,6 +11,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use \Symfony\Component\HttpFoundation\Response;
 use Kreait\Firebase\Contract\Auth as FirebaseAuth;
 use App\Models\User;
+// ポリシー追加
+use App\Policies\UserPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        User::class => UserPolicy::class,
     ];
 
     /**

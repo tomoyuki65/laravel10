@@ -39,5 +39,7 @@ class UpdateUserRequest extends FormRequest
                 'email'
             ]
         ];
+
+        return $validate;
     }
 }

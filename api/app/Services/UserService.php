@@ -75,6 +75,11 @@ class UserService extends Controller
     
             $user = $this->userRepositry->getUserFromUid($uid);
 
+            // 認可処理
+            if ($request->user()->cannot('update', $user)) {
+                return response()->json(['message' => 'Bad Request'], Response::HTTP_BAD_REQUEST);
+            }
+
             if ($request->name) {
                 $user->name = $request->name;
             }
@@ -101,6 +106,11 @@ class UserService extends Controller
             DB::beginTransaction();
 
             $user = $this->userRepositry->getUserFromUid($uid);
+
+            // 認可処理
+            if ($request->user()->cannot('delete', $user)) {
+                return response()->json(['message' => 'Bad Request'], Response::HTTP_BAD_REQUEST);
+            }
 
             $this->userRepositry->deleteUser($user);
  
