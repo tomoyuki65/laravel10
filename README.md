@@ -8,31 +8,56 @@ encore/laravel-admin  "1.8.19"
 Docker  
 docker-compose  
 
-## 使い方  
-①ビルド  
+## APIの開発環境構築  
+①環境変数ファイル「.env」を配置  
+  
+<br/>
+  
+②ビルド  
 ```  
 $ docker compose build --no-cache
 ```  
 
 <br/>
 
-②コンテナ起動  
+③コンテナ起動  
 ```  
 $ docker compose up -d
 ```  
 
 <br/>
 
-②依存関係をインストール  
+④依存関係をインストール  
 ```
 $ docker compose exec app composer install
 ```  
 
 <br/>
 
-③testの実行  
+⑤testの実行  
 ```
 $ docker compose exec app php artisan test
 ```  
 
+## 管理画面の開発環境構築  
+①別途composerを準備し、composer installを実行しておく  
+  
+<br/>
+  
+②環境変数ファイル「.env」を配置  
+  
+<br/>
+  
+③sailコマンドのエイリアスを設定  
+```  
+$ echo 'alias sail="./vendor/bin/sail"' >> ~/.zshrc  
+```  
+  
+<br/>
+  
+④コンテナ起動  
+```  
+$ sail up -d
+```  
+  
 ## 参考記事  

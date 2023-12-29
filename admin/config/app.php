@@ -31,6 +31,9 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    // 画面表示切り替え用のenv追加
+    'display_env' => env('APP_DISPLAY_ENV', 'production'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
