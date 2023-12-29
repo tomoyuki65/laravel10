@@ -36,6 +36,9 @@ trait ValidationFailedTrait
             'max' => [
                 'string' => ':attributeは:max文字以内で入力して下さい。',
             ],
+            'min' => [
+                'string' => ':attributeは:min文字以上で入力して下さい。',
+            ],
         ];
     }
 
@@ -48,6 +51,7 @@ trait ValidationFailedTrait
             'uid' => 'uid',
             'name' => '名前',
             'email' => 'メールアドレス',
+            'password' => 'パスワード',
         ];
     }
 }

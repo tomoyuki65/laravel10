@@ -80,11 +80,11 @@ class UserService extends Controller
                 return response()->json(['message' => 'Bad Request'], Response::HTTP_BAD_REQUEST);
             }
 
-            if ($request->name) {
+            if (!is_null($request->name)) {
                 $user->name = $request->name;
             }
 
-            if ($request->email) {
+            if (!is_null($request->email)) {
                 $user->email = $request->email;
             }
 
