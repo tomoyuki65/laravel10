@@ -1,0 +1,204 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API仕様書",
+        "description": "Laravel10のバックエンドAPIのAPI仕様書",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/localhost"
+        }
+    ],
+    "paths": {
+        "\/api\/v1\/user\/{uid}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "ユーザー情報取得",
+                "parameters": [
+                    {
+                        "name": "uid",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ユーザー情報取得に成功",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/User"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "サーバーエラー",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "internal server error",
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ]
+            }
+        },
+        "\/api\/v1\/user": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "ユーザー作成",
+                "requestBody": {
+                    "description": "登録ユーザー情報",
+                    "content": {
+                        "application\/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "uid",
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "uid": {
+                                        "description": "Firebaseのuid",
+                                        "type": "string",
+                                        "example": "azby0tie9k"
+                                    },
+                                    "name": {
+                                        "description": "名前",
+                                        "type": "string",
+                                        "example": "オープンAPIユーザー"
+                                    },
+                                    "email": {
+                                        "description": "メールアドレス",
+                                        "type": "string",
+                                        "example": "openapi@example.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "正常終了",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "created",
+                                            "type": "string",
+                                            "example": "OK"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "サーバーエラー",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "description": "internal server error",
+                                            "type": "string",
+                                            "example": "Internal Server Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "usersのid",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "uid": {
+                        "description": "Firebaseのuid",
+                        "type": "string",
+                        "example": "azby0tie9k"
+                    },
+                    "name": {
+                        "description": "名前",
+                        "type": "string",
+                        "example": "オープンAPIユーザー"
+                    },
+                    "email": {
+                        "description": "メールアドレス",
+                        "type": "string",
+                        "example": "openapi@example.com"
+                    },
+                    "created_at": {
+                        "description": "作成日時",
+                        "format": "date-time",
+                        "type": "string",
+                        "example": "2023-12-26 23:51:57"
+                    },
+                    "updated_at": {
+                        "description": "更新日時",
+                        "format": "date-time",
+                        "type": "string",
+                        "example": "2023-12-26 23:51:57"
+                    },
+                    "deleted_at": {
+                        "description": "削除日時",
+                        "format": "date-time",
+                        "type": "string",
+                        "example": "2023-12-26 23:51:57"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "BearerToken": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "user",
+            "description": "ユーザー"
+        }
+    ]
+}
