@@ -61,3 +61,5 @@ $ sail up -d
 ```  
   
 ## 参考記事  
+[・Laravel10でバックエンドAPIを開発する方法まとめ](https://tomoyuki65.com/how-to-develop-api-with-laravel10/)  
+  
